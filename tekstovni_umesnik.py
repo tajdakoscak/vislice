@@ -18,3 +18,32 @@ def izpis_igre(igra):
 def zahtevaj_vnos():
     return input("Vpiši naslednjo črko")
 
+def pozeni_vmesnik():
+    #naredi novo igro
+    trenutna_igra = model.nova_igra()
+
+    while True:
+        print(izpis_igre(trenutna_igra))
+
+        crka = zahtevaj_vnos()
+
+        trenutna_igra.ugibaj(crka)
+
+        if trenutna_igra.zmaga():
+            print(izpis_zmaga(trenutna_igra))
+            return
+
+        if trenutna_igra.poraz():
+            print(izpis_poraza(trenutna_igra))
+            return 
+            
+    pozeni_vmesnik()
+        
+
+    #ponavljamo
+
+    #vnos
+
+    #preveri zmago/poraz
+
+    #nazaj na vnos

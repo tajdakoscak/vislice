@@ -19,7 +19,7 @@ PORAZ = "X"
 bazen_besed = []
 
 
-with open("vislice/besede.txt") as datoteka_bazena:
+with open("vislice/besede.txt) as datoteka_bazena:
     for beseda in datoteka_bazena:
         bazen_besed.append(beseda.strip().lower())
 
