@@ -6,6 +6,8 @@ import random
 
 STEVILO_DOVOLJENIH_NAPAK = 10
 
+ZACETEK = "Z"
+
 #konstante za rezultate ugibanj
 PRAVILNA_CRKA = "+"
 PONOVLJENA_CRKA = "o"
@@ -19,7 +21,7 @@ PORAZ = "X"
 bazen_besed = []
 
 
-with open("vislice/besede.txt) as datoteka_bazena:
+with open("vislice/besede.txt") as datoteka_bazena:
     for beseda in datoteka_bazena:
         bazen_besed.append(beseda.strip().lower())
 
@@ -60,7 +62,7 @@ class Igra:
     def pravilni_del_gesla(self):
         trenutno = ""
         for crka in self.geslo:
-            if crka in self.crka:
+            if crka in self.crke:
                 trenutno += crka
             else:
                 trenutno += "_"
@@ -68,14 +70,9 @@ class Igra:
 
     def nepravilni_ugibi(self):
         return " ".join(self.napacne_crke())
-
-#B_C__ELJ
-#BICIKELJ
-
-
-
+        
     def ugibaj(self, ugibana_crka):
-        ugibana_crka = ugibana_crka.lower()
+        ugibana_crka == ugibana_crka.lower()
 
         if ugibana_crka in self.crke:
             return PONOVLJENA_CRKA
@@ -104,9 +101,55 @@ def nova_igra():
     
 
 
+class Vislice:
+
+    #skrbi za trenutno stanje VEČ iger (imel bo več objektov tipa Igra)
+    def __init__(self):
+        #slovar, ki ID ju priredi igro
+        self.igre ={}
+        #če nardiš self.igre[20] dobiš napako! TO MORMO PAZT
+        #v ta slovar igre dodajamo
+
+    #šelimo spremljati igro z (igra(ID),stanje)
+
+    #kako dobiš ID k ga zihr še ni v našem slovarju
+        # lahko daš neki na random pa na neko veliko številko
+        
+    def prosti_od_igre(self):
+        #vrne nek id, ki ga ne uporablja nobena igra
+
+        if len(self.igre) == 0:
+            return 0
+        else:
+            return max(self.igre.keys()) + 1
+
+    def nova_igra(self):
+
+        #dobimo svež id
+        nov_id = self.prosti_od_igre()
+
+        #naredimo novo igro
+        sveza_igra = nova_igra()
+
+        #vse to shanimo v self.igre
+        self.igre[nov_id] = (sveza_igra, ZACETEK)
+
+        #VRNEMO NOV ID
+        return nov_id
+
+    def ugibaj(self, id_igre, crka):
+        #dobimo staro igro ven
+        trenutna_igra, _ = self.igre[id_igre]
+
+        #ugibamo črko
+        novo_stanje = trenutna_igra.ugibaj(crka)
+
+        #zapišemo posodobljeno stanje in igro nazaj v "BAZO"
+        self.igre[id_igre] = (trenutna_igra, novo_stanje)
+
+
 
         
-
 
 
     

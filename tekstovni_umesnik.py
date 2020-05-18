@@ -11,7 +11,7 @@ def izpis_zmaga(igra):
 
 def izpis_igre(igra):
     text = (
-        f"Stanje gesla: {igra.pravilni_ugibi()} \n"
+        f"Stanje gesla: {igra.pravilni_ugibi()}\n"
         f"imaš še {model.STEVILO_DOVOLJENIH_NAPAK - igra.stevilo_napak()} možnosti za napako"
     )
 
@@ -37,7 +37,7 @@ def pozeni_vmesnik():
             print(izpis_poraza(trenutna_igra))
             return 
             
-    pozeni_vmesnik()
+pozeni_vmesnik()
         
 
     #ponavljamo
